@@ -54,7 +54,6 @@ class NpmBridgePlugin implements PluginInterface, EventSubscriberInterface
     {
         return [
             ScriptEvents::POST_INSTALL_CMD => 'onPostInstallCmd',
-            ScriptEvents::POST_UPDATE_CMD => 'onPostUpdateCmd',
         ];
     }
 
@@ -70,20 +69,6 @@ class NpmBridgePlugin implements PluginInterface, EventSubscriberInterface
     {
         $this->bridgeFactory->createBridge($event->getIO())
             ->install($event->getComposer(), $event->isDevMode());
-    }
-
-    /**
-     * Handle post update command events.
-     *
-     * @param Event $event The event to handle.
-     *
-     * @throws NpmNotFoundException      If the npm executable cannot be located.
-     * @throws NpmCommandFailedException If the operation fails.
-     */
-    public function onPostUpdateCmd(Event $event)
-    {
-        $this->bridgeFactory->createBridge($event->getIO())
-            ->update($event->getComposer());
     }
 
     private $bridgeFactory;
