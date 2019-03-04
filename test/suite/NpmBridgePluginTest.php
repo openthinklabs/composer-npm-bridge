@@ -50,7 +50,6 @@ class NpmBridgePluginTest extends TestCase
         $this->assertSame(
             [
                 ScriptEvents::POST_INSTALL_CMD => 'onPostInstallCmd',
-                ScriptEvents::POST_UPDATE_CMD => 'onPostUpdateCmd',
             ],
             $this->plugin->getSubscribedEvents()
         );
@@ -73,16 +72,6 @@ class NpmBridgePluginTest extends TestCase
         Phony::inOrder(
             $this->bridgeFactory->createBridge->calledWith($this->io),
             $this->bridge->install->calledWith($this->composer, false)
-        );
-    }
-
-    public function testOnPostUpdateCmd()
-    {
-        $this->plugin->onPostUpdateCmd(new Event(ScriptEvents::POST_UPDATE_CMD, $this->composer, $this->io));
-
-        Phony::inOrder(
-            $this->bridgeFactory->createBridge->calledWith($this->io),
-            $this->bridge->update->calledWith($this->composer)
         );
     }
 }

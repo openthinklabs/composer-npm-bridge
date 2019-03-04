@@ -62,35 +62,4 @@ class NpmClientTest extends TestCase
         $this->expectException('Eloquent\Composer\NpmBridge\Exception\NpmCommandFailedException');
         $this->client->install('/path/to/project');
     }
-
-    public function testUpdate()
-    {
-        $this->assertNull($this->client->update('/path/to/project'));
-        $this->assertNull($this->client->update('/path/to/project'));
-        Phony::inOrder(
-            $this->executableFinder->find->calledWith('npm'),
-            $this->chdir->calledWith('/path/to/project'),
-            $this->processExecutor->execute->calledWith("'/path/to/npm' 'update'"),
-            $this->chdir->calledWith('/path/to/cwd'),
-            $this->chdir->calledWith('/path/to/project'),
-            $this->processExecutor->execute->calledWith("'/path/to/npm' 'update'"),
-            $this->chdir->calledWith('/path/to/cwd')
-        );
-    }
-
-    public function testUpdateFailureNpmNotFound()
-    {
-        $this->executableFinder->find->with('npm')->returns(null);
-
-        $this->expectException('Eloquent\Composer\NpmBridge\Exception\NpmNotFoundException');
-        $this->client->update('/path/to/project');
-    }
-
-    public function testUpdateFailureCommandFailed()
-    {
-        $this->processExecutor->execute->returns(1);
-
-        $this->expectException('Eloquent\Composer\NpmBridge\Exception\NpmCommandFailedException');
-        $this->client->update('/path/to/project');
-    }
 }

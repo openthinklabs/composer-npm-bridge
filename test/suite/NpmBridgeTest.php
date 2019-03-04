@@ -102,38 +102,6 @@ class NpmBridgeTest extends TestCase
         );
     }
 
-    public function testUpdate()
-    {
-        $this->rootPackage->setRequires([$this->linkRoot1, $this->linkRoot2, $this->linkRoot3]);
-        $this->vendorFinder->find->with($this->composer, $this->bridge)->returns([$this->packageA, $this->packageB]);
-        $this->bridge->update($this->composer);
-
-        Phony::inOrder(
-            $this->io->write->calledWith('<info>Updating NPM dependencies for root project</info>'),
-            $this->client->update->calledWith(),
-            $this->client->install->calledWith(null, true),
-            $this->io->write->calledWith('<info>Installing NPM dependencies for Composer dependencies</info>'),
-            $this->io->write->calledWith('<info>Installing NPM dependencies for vendorA/packageA</info>'),
-            $this->client->install->calledWith('/path/to/install/a', false),
-            $this->io->write->calledWith('<info>Installing NPM dependencies for vendorB/packageB</info>'),
-            $this->client->install->calledWith('/path/to/install/b', false)
-        );
-    }
-
-    public function testUpdateNothing()
-    {
-        $this->rootPackage->setRequires([$this->linkRoot1, $this->linkRoot2]);
-        $this->vendorFinder->find->with($this->composer, $this->bridge)->returns([]);
-        $this->bridge->update($this->composer);
-
-        Phony::inOrder(
-            $this->io->write->calledWith('<info>Updating NPM dependencies for root project</info>'),
-            $this->io->write->calledWith('Nothing to update'),
-            $this->io->write->calledWith('<info>Installing NPM dependencies for Composer dependencies</info>'),
-            $this->io->write->calledWith('Nothing to install')
-        );
-    }
-
     public function testIsDependantPackage()
     {
         $this->packageA->setRequires([$this->linkRoot3]);

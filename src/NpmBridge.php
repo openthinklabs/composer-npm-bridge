@@ -9,7 +9,7 @@ use Eloquent\Composer\NpmBridge\Exception\NpmCommandFailedException;
 use Eloquent\Composer\NpmBridge\Exception\NpmNotFoundException;
 
 /**
- * Manages NPM installs, and updates for Composer projects.
+ * Manages NPM installs for Composer projects.
  */
 class NpmBridge
 {
@@ -51,30 +51,6 @@ class NpmBridge
             $this->client->install(null, $isDevMode);
         } else {
             $this->io->write('Nothing to install');
-        }
-
-        $this->installForVendors($composer);
-    }
-
-    /**
-     * Update NPM dependencies for a Composer project and its dependencies.
-     *
-     * @param Composer $composer The main Composer object.
-     *
-     * @throws NpmNotFoundException      If the npm executable cannot be located.
-     * @throws NpmCommandFailedException If the operation fails.
-     */
-    public function update(Composer $composer)
-    {
-        $this->io->write(
-            '<info>Updating NPM dependencies for root project</info>'
-        );
-
-        if ($this->isDependantPackage($composer->getPackage(), true)) {
-            $this->client->update();
-            $this->client->install(null, true);
-        } else {
-            $this->io->write('Nothing to update');
         }
 
         $this->installForVendors($composer);
