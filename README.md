@@ -29,7 +29,7 @@
 To utilize the *Composer NPM bridge*, simply add `eloquent/composer-npm-bridge`
 to the `require` section of the project's Composer configuration:
 
-    composer require eloquent/composer-npm-bridge:^4
+    composer require eloquent/composer-npm-bridge
 
 NPM dependencies are specified via a [package.json] configuration file in the
 root directory of the Composer package. Source control should be configured to
@@ -58,6 +58,42 @@ a dependency.
 [install]: https://npmjs.org/doc/install.html
 [npm]: https://npmjs.org/
 [update]: https://npmjs.org/doc/update.html
+
+## Configuration
+
+The following configuration can be added to `composer.json` under the
+`extra.npm-bridge` section to customize the behavior on a per-package basis.
+Values in the root package will not currently impact any dependency packages
+that also use *Composer NPM bridge* - each package must define its own options.
+
+Key       | Type  | Default | Description
+----------|-------|---------|---------------------------------------------------
+timeout   | int   | `300`   | Specify a custom timeout for the installation (in seconds).
+optional  | bool  | `false` | Skip instead of throwing an exception if `npm` is not found when processing the package.
+arguments | array | []      | Add custom NPM arguments
+
+```json5
+{
+    // ...
+
+    "extra": {
+        "npm-bridge": {
+            "timeout": 9000,
+            "optional": true,
+            "arguments": ["--prefix", "someDir"]
+        },
+
+        // ...
+    }
+}
+```
+
+*Composer NPM bridge* can be completely disabled by setting the
+`COMPOSER_NPM_BRIDGE_DISABLE` environment variable to a non-empty value:
+
+```shell
+COMPOSER_NPM_BRIDGE_DISABLE=1 composer install
+```
 
 ## Caveats
 
