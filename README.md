@@ -2,23 +2,14 @@
 
 *NPM integration for Composer packages.*
 
-[![Current version image][version-image]][current version]
-[![Current build status image][build-image]][current build status]
-[![Current coverage status image][coverage-image]][current coverage status]
-
-[build-image]: http://img.shields.io/travis/eloquent/composer-npm-bridge/develop.svg?style=flat-square "Current build status for the develop branch"
-[coverage-image]: https://img.shields.io/codecov/c/github/eloquent/composer-npm-bridge/develop.svg?style=flat-square "Current test coverage for the develop branch"
-[current build status]: https://travis-ci.org/eloquent/composer-npm-bridge
-[current coverage status]: https://codecov.io/github/eloquent/composer-npm-bridge
-[current version]: https://packagist.org/packages/eloquent/composer-npm-bridge
-[version-image]: https://img.shields.io/packagist/v/eloquent/composer-npm-bridge.svg?style=flat-square "This project uses semantic versioning"
+> This package is a fork from https://github.com/eloquent/composer-npm-bridge (thanks to them!)
 
 ## Installation
 
-- Available as [Composer] package [eloquent/composer-npm-bridge].
+- Available as [Composer] package [oat-sa/composer-npm-bridge].
 
 [composer]: http://getcomposer.org/
-[eloquent/composer-npm-bridge]: https://packagist.org/packages/eloquent/composer-npm-bridge
+[oat-sa/composer-npm-bridge]: https://packagist.org/packages/oat-sa/composer-npm-bridge
 
 ## Requirements
 
@@ -26,10 +17,10 @@
 
 ## Usage
 
-To utilize the *Composer NPM bridge*, simply add `eloquent/composer-npm-bridge`
+To utilize the *Composer NPM bridge*, simply add `oat-sa/composer-npm-bridge`
 to the `require` section of the project's Composer configuration:
 
-    composer require eloquent/composer-npm-bridge
+    composer require oat-sa/composer-npm-bridge
 
 NPM dependencies are specified via a [package.json] configuration file in the
 root directory of the Composer package. Source control should be configured to
@@ -43,7 +34,7 @@ The *Composer NPM bridge* is a Composer plugin that automatically installs and
 updates [NPM] packages whenever the corresponding Composer command is executed.
 To detect compatible packages, the bridge inspects Composer package
 configuration information to find packages that directly require the
-`eloquent/composer-npm-bridge` Composer package itself.
+`oat-sa/composer-npm-bridge` Composer package itself.
 
 In addition to normal operation, `composer install` will [install] NPM
 dependencies for all Composer packages using the bridge. This includes the root

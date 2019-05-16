@@ -1,5 +1,9 @@
 # Composer NPM bridge changelog
 
+##  0.1.1
+
+- Change the package name from `eloquent` to `oat-sa`
+
 ##  0.1.0
 
 - Added npm argument config parameter.
