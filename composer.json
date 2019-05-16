@@ -1,5 +1,5 @@
 {
-    "name": "eloquent/composer-npm-bridge",
+    "name": "oat-sa/composer-npm-bridge",
     "description": "NPM integration for Composer packages.",
     "keywords": ["composer", "npm", "package", "integration", "bridge", "plugin", "composer-plugin"],
     "homepage": "https://github.com/eloquent/composer-npm-bridge",
