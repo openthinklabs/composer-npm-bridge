@@ -30,10 +30,10 @@ class NpmVendorFinderTest extends TestCase
         $this->linkA1 = new Link('vendorA/packageA', 'vendorX/packageX');
         $this->linkA2 = new Link('vendorA/packageA', 'vendorY/packageY');
         $this->linkB1 = new Link('vendorB/packageB', 'vendorZ/packageZ');
-        $this->linkB2 = new Link('vendorB/packageB', 'eloquent/composer-npm-bridge');
+        $this->linkB2 = new Link('vendorB/packageB', 'oat-sa/composer-npm-bridge');
         $this->linkC1 = new Link('vendorC/packageC', 'vendorZ/packageZ');
-        $this->linkC2 = new Link('vendorC/packageC', 'eloquent/composer-npm-bridge');
-        $this->linkD1 = new Link('vendorD/packageD', 'eloquent/composer-npm-bridge');
+        $this->linkC2 = new Link('vendorC/packageC', 'oat-sa/composer-npm-bridge');
+        $this->linkD1 = new Link('vendorD/packageD', 'oat-sa/composer-npm-bridge');
         $this->linkD2 = new Link('vendorD/packageD', 'vendorZ/packageZ');
 
         $this->composer->setRepositoryManager($this->repositoryManager->get());
