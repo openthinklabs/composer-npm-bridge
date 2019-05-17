@@ -29,7 +29,7 @@ class NpmBridgeTest extends TestCase
 
         $this->linkRoot1 = new Link('vendor/package', 'vendorX/packageX');
         $this->linkRoot2 = new Link('vendor/package', 'vendorY/packageY');
-        $this->linkRoot3 = new Link('vendor/package', 'eloquent/composer-npm-bridge');
+        $this->linkRoot3 = new Link('vendor/package', 'oat-sa/composer-npm-bridge');
 
         $this->installationManager = Phony::mock('Composer\Installer\InstallationManager');
         $this->installationManager->getInstallPath->with($this->packageA)->returns('/path/to/install/a');
