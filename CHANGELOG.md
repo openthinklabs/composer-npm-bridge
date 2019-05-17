@@ -2,6 +2,10 @@
 
 ##  0.1.1
 
+- Run `npm install` on `composer update`
+
+##  0.1.1
+
 - Change the package name from `eloquent` to `oat-sa`
 
 ##  0.1.0

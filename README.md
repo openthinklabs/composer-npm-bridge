@@ -38,9 +38,11 @@ configuration information to find packages that directly require the
 
 In addition to normal operation, `composer install` will [install] NPM
 dependencies for all Composer packages using the bridge. This includes the root
-package, as well as Composer dependencies. Similarly, `composer update` will
+package, as well as Composer dependencies. 
+
+Similarly, `composer update` will
 [install] NPM dependencies for all Composer dependencies using the bridge. It
-will also [update] the NPM dependencies for the root project.
+will also run `npm install` for the NPM dependencies.
 
 NPM dependencies will be installed exactly as if `npm install` were run from the
 root directory of the package. This applies even if the package is installed as
