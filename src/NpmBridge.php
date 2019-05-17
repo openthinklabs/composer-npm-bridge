@@ -84,14 +84,14 @@ class NpmBridge
         bool $includeDevDependencies = false
     ): bool {
         foreach ($package->getRequires() as $link) {
-            if ('eloquent/composer-npm-bridge' === $link->getTarget()) {
+            if ('oat-sa/composer-npm-bridge' === $link->getTarget()) {
                 return true;
             }
         }
 
         if ($includeDevDependencies) {
             foreach ($package->getDevRequires() as $link) {
-                if ('eloquent/composer-npm-bridge' === $link->getTarget()) {
+                if ('oat-sa/composer-npm-bridge' === $link->getTarget()) {
                     return true;
                 }
             }
