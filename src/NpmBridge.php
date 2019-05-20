@@ -13,6 +13,11 @@ use Eloquent\Composer\NpmBridge\Exception\NpmNotFoundException;
  */
 class NpmBridge
 {
+    const EXTRA_KEY = 'npm-bridge';
+    const EXTRA_KEY_OPTIONAL = 'optional';
+    const EXTRA_KEY_TIMEOUT = 'timeout';
+    const EXTRA_KEY_NPM_ARGUMENTS = 'arguments';
+
     /**
      * Construct a new Composer NPM bridge plugin.
      *
@@ -47,8 +52,18 @@ class NpmBridge
             '<info>Installing NPM dependencies for root project</info>'
         );
 
-        if ($this->isDependantPackage($composer->getPackage(), $isDevMode)) {
-            $this->client->install(null, $isDevMode);
+        $package = $composer->getPackage();
+
+        if ($this->isDependantPackage($package, $isDevMode)) {
+            $isNpmAvailable = $this->client->isAvailable();
+            $extra = $package->getExtra();
+
+            if (!$isNpmAvailable && $this->isPackageOptional($extra)) {
+                $this->io->write('Skipping as NPM is unavailable');
+            } else {
+                $this->client
+                    ->install(null, $isDevMode, $this->packageTimeout($extra), $this->getNpmArguments($extra));
+            }
         } else {
             $this->io->write('Nothing to install');
         }
@@ -69,14 +84,14 @@ class NpmBridge
         bool $includeDevDependencies = false
     ): bool {
         foreach ($package->getRequires() as $link) {
-            if ('eloquent/composer-npm-bridge' === $link->getTarget()) {
+            if ('oat-sa/composer-npm-bridge' === $link->getTarget()) {
                 return true;
             }
         }
 
         if ($includeDevDependencies) {
             foreach ($package->getDevRequires() as $link) {
-                if ('eloquent/composer-npm-bridge' === $link->getTarget()) {
+                if ('oat-sa/composer-npm-bridge' === $link->getTarget()) {
                     return true;
                 }
             }
@@ -94,7 +109,24 @@ class NpmBridge
         $packages = $this->vendorFinder->find($composer, $this);
 
         if (count($packages) > 0) {
+            $isNpmAvailable = $this->client->isAvailable();
+            $installationManager = $composer->getInstallationManager();
+
             foreach ($packages as $package) {
+                $extra = $package->getExtra();
+
+                if (!$isNpmAvailable && $this->isPackageOptional($extra)) {
+                    $this->io->write(
+                        sprintf(
+                            'Skipping optional NPM dependencies for %s as NPM' .
+                            ' is unavailable',
+                            $package->getPrettyName()
+                        )
+                    );
+
+                    continue;
+                }
+
                 $this->io->write(
                     sprintf(
                         '<info>Installing NPM dependencies for %s</info>',
@@ -103,14 +135,32 @@ class NpmBridge
                 );
 
                 $this->client->install(
-                    $composer->getInstallationManager()
-                        ->getInstallPath($package),
-                    false
+                    $installationManager->getInstallPath($package),
+                    false,
+                    $this->packageTimeout($extra),
+                    $this->getNpmArguments($extra)
                 );
             }
         } else {
             $this->io->write('Nothing to install');
         }
+    }
+
+    private function packageTimeout(array $extra) {
+        if (isset($extra[self::EXTRA_KEY][self::EXTRA_KEY_TIMEOUT])) {
+            return intval($extra[self::EXTRA_KEY][self::EXTRA_KEY_TIMEOUT]);
+        }
+
+        return null;
+    }
+
+    private function isPackageOptional(array $extra)
+    {
+        return !empty($extra[self::EXTRA_KEY][self::EXTRA_KEY_OPTIONAL]);
+    }
+
+    private function getNpmArguments(array $extra) {
+        return $extra[self::EXTRA_KEY][self::EXTRA_KEY_NPM_ARGUMENTS] ?? [];
     }
 
     private $io;
