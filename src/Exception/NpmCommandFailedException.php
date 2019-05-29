@@ -15,7 +15,7 @@ final class NpmCommandFailedException extends Exception
      * @param string         $command The executed command.
      * @param Exception|null $cause   The cause, if available.
      */
-    public function __construct(string $command, Exception $cause = null)
+    public function __construct($command, Exception $cause = null)
     {
         $this->command = $command;
 
@@ -31,7 +31,7 @@ final class NpmCommandFailedException extends Exception
      *
      * @return string The command.
      */
-    public function command(): string
+    public function command()
     {
         return $this->command;
     }
