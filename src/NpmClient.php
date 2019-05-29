@@ -62,7 +62,7 @@ class NpmClient
      * @throws NpmNotFoundException      If the npm executable cannot be located.
      * @throws NpmCommandFailedException If the operation fails.
      */
-    public function install(string $path = null, bool $isDevMode = true, int $timeout = null, $npmArguments = [])
+    public function install(string $path = null, $isDevMode = true, $timeout = null, $npmArguments = [])
     {
         if ($isDevMode) {
             $arguments = ['install'];
