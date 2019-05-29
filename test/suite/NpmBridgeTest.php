@@ -133,7 +133,7 @@ class NpmBridgeTest extends TestCase
         $this->client->install->throws($this->expected);
         $this->rootPackage->setRequires([$this->linkRoot3]);
 
-        $this->expectExceptionObject($this->expected);
+        $this->expectException(get_class($this->expected));
         $this->bridge->install($this->composer, false);
     }
 
@@ -179,7 +179,7 @@ class NpmBridgeTest extends TestCase
         $this->client->install->throws($this->expected);
         $this->vendorFinder->find->with($this->composer, $this->bridge)->returns([$this->packageA, $this->packageB]);
 
-        $this->expectExceptionObject($this->expected);
+        $this->expectException(get_class($this->expected));
         $this->bridge->install($this->composer, false);
     }
 
