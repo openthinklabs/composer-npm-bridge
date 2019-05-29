@@ -40,7 +40,7 @@ class NpmClient
         ExecutableFinder $executableFinder,
         $getcwd = 'getcwd',
         $chdir = 'chdir',
-        string $processExecutorClass = ProcessExecutor::class
+        $processExecutorClass = ProcessExecutor::class
     ) {
         $this->processExecutor = $processExecutor;
         $this->executableFinder = $executableFinder;

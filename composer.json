@@ -1,6 +1,6 @@
 {
     "name": "oat-sa/composer-npm-bridge",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "NPM integration for Composer packages.",
     "keywords": ["composer", "npm", "package", "integration", "bridge", "plugin", "composer-plugin"],
     "homepage": "https://github.com/oat-sa/composer-npm-bridge",
@@ -21,7 +21,6 @@
         "composer-plugin-api": "^1"
     },
     "require-dev": {
-        "php": ">=7",
         "composer/composer": "dev-master",
         "eloquent/phony-phpunit": "^3",
         "errors/exceptions": "^0.2",
@@ -34,11 +33,6 @@
     },
     "extra": {
         "class": "Eloquent\\Composer\\NpmBridge\\NpmBridgePlugin"
-    },
-    "config": {
-        "platform": {
-            "php": "7.0.99999"
-        }
     }
 }
 
