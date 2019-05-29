@@ -18,9 +18,11 @@
     }],
     "type": "composer-plugin",
     "require": {
+        "php" : ">=5.6",
         "composer-plugin-api": "^1"
     },
     "require-dev": {
+        "php" : ">=7",
         "composer/composer": "dev-master",
         "eloquent/phony-phpunit": "^3",
         "errors/exceptions": "^0.2",
