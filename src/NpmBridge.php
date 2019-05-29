@@ -46,7 +46,7 @@ class NpmBridge
      * @throws NpmNotFoundException      If the npm executable cannot be located.
      * @throws NpmCommandFailedException If the operation fails.
      */
-    public function install(Composer $composer, bool $isDevMode = true)
+    public function install(Composer $composer, $isDevMode = true)
     {
         $this->io->write(
             '<info>Installing NPM dependencies for root project</info>'
@@ -81,7 +81,7 @@ class NpmBridge
      */
     public function isDependantPackage(
         PackageInterface $package,
-        bool $includeDevDependencies = false
+        $includeDevDependencies = false
     ) {
         foreach ($package->getRequires() as $link) {
             if ('oat-sa/composer-npm-bridge' === $link->getTarget()) {
