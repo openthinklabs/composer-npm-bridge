@@ -24,7 +24,7 @@
         "composer/composer": "dev-master",
         "eloquent/phony-phpunit": "^1",
         "errors/exceptions": "^0.2",
-        "phpunit/phpunit": "^6"
+        "phpunit/phpunit": "^5"
     },
     "autoload": {
         "psr-4": {
