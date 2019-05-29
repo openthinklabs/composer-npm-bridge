@@ -19,7 +19,7 @@ class NpmClient
      *
      * @return self The newly created client.
      */
-    public static function create(): self
+    public static function create()
     {
         return new self(new ProcessExecutor(), new ExecutableFinder());
     }

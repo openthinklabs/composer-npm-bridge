@@ -82,7 +82,7 @@ class NpmBridge
     public function isDependantPackage(
         PackageInterface $package,
         bool $includeDevDependencies = false
-    ): bool {
+    ) {
         foreach ($package->getRequires() as $link) {
             if ('oat-sa/composer-npm-bridge' === $link->getTarget()) {
                 return true;
