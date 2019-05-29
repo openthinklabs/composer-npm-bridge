@@ -14,7 +14,7 @@ class NpmBridgeFactory
      *
      * @return self The newly created factory.
      */
-    public static function create(): self
+    public static function create()
     {
         return new self(
             new NpmVendorFinder(),
@@ -43,7 +43,7 @@ class NpmBridgeFactory
      *
      * @param IOInterface $io The i/o interface to use.
      */
-    public function createBridge(IOInterface $io): NpmBridge
+    public function createBridge(IOInterface $io)
     {
         return new NpmBridge($io, $this->vendorFinder, $this->client);
     }

@@ -50,7 +50,7 @@ class NpmBridgePlugin implements PluginInterface, EventSubscriberInterface
      *
      * @return array<string,string> The events to listen to, and their associated handlers.
      */
-    public static function getSubscribedEvents(): array
+    public static function getSubscribedEvents()
     {
         // Issue #18 - disable if ENV set
         if (!empty(getenv('COMPOSER_NPM_BRIDGE_DISABLE'))) {

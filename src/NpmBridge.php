@@ -46,7 +46,7 @@ class NpmBridge
      * @throws NpmNotFoundException      If the npm executable cannot be located.
      * @throws NpmCommandFailedException If the operation fails.
      */
-    public function install(Composer $composer, bool $isDevMode = true)
+    public function install(Composer $composer, $isDevMode = true)
     {
         $this->io->write(
             '<info>Installing NPM dependencies for root project</info>'
@@ -81,8 +81,8 @@ class NpmBridge
      */
     public function isDependantPackage(
         PackageInterface $package,
-        bool $includeDevDependencies = false
-    ): bool {
+        $includeDevDependencies = false
+    ) {
         foreach ($package->getRequires() as $link) {
             if ('oat-sa/composer-npm-bridge' === $link->getTarget()) {
                 return true;
@@ -108,7 +108,7 @@ class NpmBridge
 
         $packages = $this->vendorFinder->find($composer, $this);
 
-        if (count($packages) > 0) {
+        if (is_array($packages) && count($packages) > 0) {
             $isNpmAvailable = $this->client->isAvailable();
             $installationManager = $composer->getInstallationManager();
 
@@ -146,7 +146,8 @@ class NpmBridge
         }
     }
 
-    private function packageTimeout(array $extra) {
+    private function packageTimeout(array $extra)
+    {
         if (isset($extra[self::EXTRA_KEY][self::EXTRA_KEY_TIMEOUT])) {
             return intval($extra[self::EXTRA_KEY][self::EXTRA_KEY_TIMEOUT]);
         }
@@ -159,8 +160,12 @@ class NpmBridge
         return !empty($extra[self::EXTRA_KEY][self::EXTRA_KEY_OPTIONAL]);
     }
 
-    private function getNpmArguments(array $extra) {
-        return $extra[self::EXTRA_KEY][self::EXTRA_KEY_NPM_ARGUMENTS] ?? [];
+    private function getNpmArguments(array $extra)
+    {
+        if (isset($extra[self::EXTRA_KEY][self::EXTRA_KEY_NPM_ARGUMENTS])) {
+            return $extra[self::EXTRA_KEY][self::EXTRA_KEY_NPM_ARGUMENTS];
+        }
+        return [];
     }
 
     private $io;

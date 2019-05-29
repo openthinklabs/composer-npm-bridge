@@ -1,5 +1,9 @@
 # Composer NPM bridge changelog
 
+##  0.3.0
+
+- Downgrade to php5.6
+
 ##  0.1.1
 
 - Run `npm install` on `composer update`

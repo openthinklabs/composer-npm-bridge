@@ -18,7 +18,7 @@ class NpmVendorFinder
      *
      * @return array<integer,PackageInterface> The list of NPM bridge enabled vendor packages.
      */
-    public function find(Composer $composer, NpmBridge $bridge): array
+    public function find(Composer $composer, NpmBridge $bridge)
     {
         $packages = $composer->getRepositoryManager()->getLocalRepository()
             ->getPackages();
