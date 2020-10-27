@@ -79,4 +79,12 @@ class NpmBridgePlugin implements PluginInterface, EventSubscriberInterface
     }
 
     private $bridgeFactory;
+
+    public function deactivate(Composer $composer, IOInterface $io)
+    {
+    }
+
+    public function uninstall(Composer $composer, IOInterface $io)
+    {
+    }
 }
