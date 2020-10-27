@@ -1,5 +1,9 @@
 # Composer NPM bridge changelog
 
+##  0.4.0
+
+- Added support of Composer 2.0 Plugin API
+
 ##  0.3.0
 
 - Downgrade to php5.6
