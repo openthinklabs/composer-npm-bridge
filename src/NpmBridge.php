@@ -97,7 +97,9 @@ class NpmBridge
             }
         }
 
-        return false;
+        return $package->getType() === 'tao-extension'
+            && array_key_exists('npm-bridge', $package->getExtra())
+        }
     }
 
     private function installForVendors($composer)
