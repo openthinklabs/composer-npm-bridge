@@ -1,5 +1,9 @@
 # Composer NPM bridge changelog
 
+##  0.4.1
+
+- Fix detecting NPM configuration in extension composer file
+
 ##  0.4.0
 
 - Added support of Composer 2.0 Plugin API
