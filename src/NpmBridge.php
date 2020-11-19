@@ -97,15 +97,9 @@ class NpmBridge
             }
         }
 
-        // Check custom TAO extension config and if it has NPM Bridge configuration, run assets bulding
-        if (
-            $package->getType() === 'tao-extension'
+        return $package->getType() === 'tao-extension'
             && array_key_exists('npm-bridge', $package->getExtra())
-        ) {
-            return true;
         }
-
-        return false;
     }
 
     private function installForVendors($composer)
