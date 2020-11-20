@@ -1,6 +1,6 @@
 {
     "name": "oat-sa/composer-npm-bridge",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "description": "NPM integration for Composer packages.",
     "keywords": ["composer", "npm", "package", "integration", "bridge", "plugin", "composer-plugin"],
     "homepage": "https://github.com/oat-sa/composer-npm-bridge",
