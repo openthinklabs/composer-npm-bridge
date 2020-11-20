@@ -1,5 +1,9 @@
 # Composer NPM bridge changelog
 
+##  0.4.2
+
+- Fix typo after merging GitHub suggestion from code review
+
 ##  0.4.1
 
 - Fix detecting NPM configuration in extension composer file
