@@ -65,9 +65,9 @@ class NpmClient
     public function install($path = null, $isDevMode = true, $timeout = null, $npmArguments = [])
     {
         if ($isDevMode) {
-            $arguments = ['install'];
+            $arguments = ['ci'];
         } else {
-            $arguments = ['install', '--production'];
+            $arguments = ['ci', '--production'];
         }
 
         $arguments = array_merge($arguments, $npmArguments);
