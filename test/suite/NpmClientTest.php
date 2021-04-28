@@ -36,7 +36,7 @@ class NpmClientTest extends TestCase
             $this->executableFinder->find->calledWith('npm'),
             $this->processExecutorClass->getTimeout->called(),
             $this->processExecutorClass->setTimeout->calledWith(NpmClient::DEFAULT_TIMEOUT),
-            $this->processExecutor->execute->calledWith("'/path/to/npm' 'install'"),
+            $this->processExecutor->execute->calledWith("'/path/to/npm' 'ci'"),
             $this->processExecutorClass->setTimeout->calledWith(
                 $this->processExecutorClass->getTimeout->firstCall()->returnValue()
             )
@@ -50,7 +50,7 @@ class NpmClientTest extends TestCase
 
         Phony::inOrder(
             $this->chdir->calledWith('/path/to/project'),
-            $this->processExecutor->execute->calledWith("'/path/to/npm' 'install'"),
+            $this->processExecutor->execute->calledWith("'/path/to/npm' 'ci'"),
             $this->chdir->calledWith('/path/to/cwd')
         );
     }
@@ -59,7 +59,7 @@ class NpmClientTest extends TestCase
     {
         $this->client->install(null, false);
 
-        $this->processExecutor->execute->calledWith("'/path/to/npm' 'install' '--production'");
+        $this->processExecutor->execute->calledWith("'/path/to/npm' 'ci' '--production'");
     }
 
     public function testInstallFailureNpmNotFound()
