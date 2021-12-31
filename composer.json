@@ -1,5 +1,5 @@
 {
-    "name": "oat-sa/composer-npm-bridge",
+    "name": "openthinklabs/composer-npm-bridge",
     "version": "0.4.2",
     "description": "NPM integration for Composer packages.",
     "keywords": ["composer", "npm", "package", "integration", "bridge", "plugin", "composer-plugin"],
