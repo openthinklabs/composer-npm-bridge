@@ -1,5 +1,9 @@
 # Composer NPM bridge changelog
 
+##  0.4.3
+
+- Update NPM command failure message to include the complete output
+
 ##  0.4.2
 
 - Fix typo after merging GitHub suggestion from code review
