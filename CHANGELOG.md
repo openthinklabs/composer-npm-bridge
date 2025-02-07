@@ -2,7 +2,7 @@
 
 ##  0.4.6
 
-- Fix capturing error output from NPM command
+- Fix NPM process logging by injecting the Composer IO object to the process executor
 
 ##  0.4.5
 
