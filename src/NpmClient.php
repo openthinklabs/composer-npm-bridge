@@ -109,7 +109,7 @@ class NpmClient
         call_user_func($this->setTimeout, $timeout);
 
         $this->processExecutor->execute('pwd');
-        $exitCode = $this->processExecutor->execute($command);
+        $exitCode = $this->processExecutor->execute($command, $output);
 
         call_user_func($this->setTimeout, $oldTimeout);
 
@@ -118,7 +118,7 @@ class NpmClient
         }
 
         if (0 !== $exitCode) {
-            throw new NpmCommandFailedException($command);
+            throw new NpmCommandFailedException($command, $output);
         }
     }
 
