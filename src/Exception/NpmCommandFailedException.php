@@ -15,12 +15,12 @@ final class NpmCommandFailedException extends Exception
      * @param string         $command The executed command.
      * @param Exception|null $cause   The cause, if available.
      */
-    public function __construct($command, $output, Exception $cause = null)
+    public function __construct($command, Exception $cause = null)
     {
         $this->command = $command;
 
         parent::__construct(
-            "Execution of `$command` failed with the following output:\n$output",
+            sprintf('Execution of %s failed.', var_export($command, true)),
             0,
             $cause
         );

@@ -2,6 +2,7 @@
 
 namespace Eloquent\Composer\NpmBridge;
 
+use Composer\IO\IOInterface;
 use Composer\Util\ProcessExecutor;
 use Eloquent\Composer\NpmBridge\Exception\NpmCommandFailedException;
 use Eloquent\Composer\NpmBridge\Exception\NpmNotFoundException;
@@ -22,6 +23,12 @@ class NpmClient
     public static function create()
     {
         return new self(new ProcessExecutor(), new ExecutableFinder());
+    }
+
+    public function setIo(IOInterface $io)
+    {
+        $this->processExecutor = new ProcessExecutor($io);
+        return $this;
     }
 
     /**
@@ -109,7 +116,7 @@ class NpmClient
         call_user_func($this->setTimeout, $timeout);
 
         $this->processExecutor->execute('pwd');
-        $exitCode = $this->processExecutor->execute($command, $output);
+        $exitCode = $this->processExecutor->execute($command);
 
         call_user_func($this->setTimeout, $oldTimeout);
 
@@ -118,7 +125,7 @@ class NpmClient
         }
 
         if (0 !== $exitCode) {
-            throw new NpmCommandFailedException($command, $output);
+            throw new NpmCommandFailedException($command);
         }
     }
 
