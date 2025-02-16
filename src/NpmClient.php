@@ -2,6 +2,7 @@
 
 namespace Eloquent\Composer\NpmBridge;
 
+use Composer\IO\IOInterface;
 use Composer\Util\ProcessExecutor;
 use Eloquent\Composer\NpmBridge\Exception\NpmCommandFailedException;
 use Eloquent\Composer\NpmBridge\Exception\NpmNotFoundException;
@@ -12,7 +13,7 @@ use Symfony\Component\Process\ExecutableFinder;
  */
 class NpmClient
 {
-    const DEFAULT_TIMEOUT = 300;
+    const DEFAULT_TIMEOUT = 3000;
 
     /**
      * Create a new NPM client.
@@ -22,6 +23,12 @@ class NpmClient
     public static function create()
     {
         return new self(new ProcessExecutor(), new ExecutableFinder());
+    }
+
+    public function setIo(IOInterface $io)
+    {
+        $this->processExecutor = new ProcessExecutor($io);
+        return $this;
     }
 
     /**

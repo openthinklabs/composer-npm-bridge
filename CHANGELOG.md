@@ -1,5 +1,21 @@
 # Composer NPM bridge changelog
 
+##  0.4.6
+
+- Fix NPM process logging by injecting the Composer IO object to the process executor
+
+##  0.4.5
+
+- Update NPM command failure message to include the complete output
+
+##  0.4.4
+
+- fix DEFAULT_TIMEOUT to 3000
+
+##  0.4.3
+
+- Fix run `npm ci` instead of `npm install`
+
 ##  0.4.2
 
 - Fix typo after merging GitHub suggestion from code review

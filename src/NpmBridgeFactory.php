@@ -45,7 +45,7 @@ class NpmBridgeFactory
      */
     public function createBridge(IOInterface $io)
     {
-        return new NpmBridge($io, $this->vendorFinder, $this->client);
+        return new NpmBridge($io, $this->vendorFinder, $this->client->setIo($io));
     }
 
     private $vendorFinder;
